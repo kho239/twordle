@@ -1,0 +1,39 @@
+{
+  "name": "twordle",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "author": "kho239 & dim4ezz",
+  "license": "",
+  "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.16.1",
+    "@mui/material": "^5.16.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "sass": "^1.30.0",
+    "web-vitals": "^4.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-react": "^7.12.10",
+    "autoprefixer": "^10.4.19",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^7.1.2",
+    "node-sass": "^9.0.0",
+    "postcss": "^8.4.39",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^9.6.0",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "tailwindcss": "^3.4.4",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^5.0.4"
+  }
+}
