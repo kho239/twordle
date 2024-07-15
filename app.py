@@ -1,13 +1,7 @@
 import pickle
 from flask import Flask, render_template, request
 from flask_cors import CORS
-
-
-class Node:
-    def __init__(self, value=0):
-        self.children = {}
-        self.value = value
-
+from lib.node import Node
 
 app = Flask(__name__)
 CORS(app)

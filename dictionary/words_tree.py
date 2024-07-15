@@ -1,10 +1,5 @@
 import pickle
-
-
-class Node:
-    def __init__(self, value=0):
-        self.children = {}
-        self.value = value
+from lib.node import Node
 
 
 root = Node()
