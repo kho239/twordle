@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.js"
   },
-  "author": "kho239 & dim4ezz",
+  "author": "kho239 & dim4ezzz",
   "license": "",
   "dependencies": {
     "@emotion/react": "^11.11.4",

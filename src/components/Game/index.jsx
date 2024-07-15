@@ -17,7 +17,7 @@ function Game(props) {
     } else if (event.key === "Backspace") {
       setLetter("DEL");
       setClicked(clicked + 1);
-    } else if ("abcdefghijklmnopqrstuvwxyz".includes(event.key.toLowerCase())) {
+    } else if ("абвгдежзийклмнопрстуфхцчшщыьъэюя".includes(event.key.toLowerCase())) {
       setLetter(event.key.toUpperCase());
       setClicked(clicked + 1);
     }

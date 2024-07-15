@@ -1,19 +1,20 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 import Box from "../Box/index.jsx";
-import BACKEND_URL from "../../additional/constants.js"
+import { CONSTANTS } from "../../additional/constants.js"
 
 
-let defaultBoard = [];
+let defaultBoard = [[["", ""]]];
 let defaultLetters = [];
 
-"abcdefghijklmnopqrstuvwxyz".split("").forEach((i) => {
+"абвгдежзийклмнопрстуфхцчшщыьъэюя".split("").forEach((i) => {
   defaultLetters[i] = "";
 });
 
-for (let i = 0; i < 6; i++) {
+console.log(CONSTANTS.MAX_LETTERS_IN_WORD)
+for (let i = 1; i < 6; i++) {
   defaultBoard.push([]);
-  for (let j = 0; j < 5; j++) {
+  for (let j = 0; j < CONSTANTS.MAX_LETTERS_IN_WORD; j++) {
     defaultBoard[i].push(["", ""]);
   }
 }
@@ -29,11 +30,21 @@ function Board(props) {
     {
       if (props.clicks !== 0) {
         if (props.letter === "DEL") {
-          setCol(col === 0 ? 0 : col - 1);
-          setBoard((prevBoard) => {
-            prevBoard[row][col === 0 ? 0 : col - 1][0] = "";
-            return prevBoard;
-          });
+          if (col === 0) {
+            setBoard((prevBoard) => {
+              prevBoard[row][0][0] = "";
+              return prevBoard;
+            });
+          } else {
+            setBoard((prevBoard) => {
+              prevBoard[row][col - 1][0] = "";
+              if (col < CONSTANTS.MAX_LETTERS_IN_WORD) {
+                prevBoard[row].pop();
+              }
+              return prevBoard;
+            });
+            setCol(col - 1);
+          }
         } else {
           setBoard((prevBoard) => {
             if (props.letter === "ENTER") {
@@ -41,7 +52,10 @@ function Board(props) {
               for (let i = 0; i < prevBoard[row].length; i++) {
                 word += prevBoard[row][i][0];
               }
-              fetch('http://127.0.0.1:5000/check_word', {
+              if (word === "") {
+                return prevBoard
+              }
+              fetch(`${CONSTANTS.BACKEND_URL}/check_word`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -52,36 +66,23 @@ function Board(props) {
               }).then(response => response.json())
                 .then(data => {
                   if (data['valid'] === true) {
+                    if (col < CONSTANTS.MAX_LETTERS_IN_WORD) {
+                      prevBoard[row].pop();
+                    }
+                    prevBoard[row + 1] = [["", ""]]
                     setRow(row + 1);
                     setCol(0);
-                    prevBoard.push([]);
-                    for (let j = 0; j < 5; j++) {
-                      prevBoard[row].push(["", ""]);
-                    }
                     setBoard(prevBoard)
                   }
                 })
-              // let result = fetch(`${BACKEND_URL}/check_word`, {
-              //   method: 'GET',
-              //   headers: {
-              //     'Content-Type': 'application/json',
-              //   },
-              //   body: JSON.stringify({
-              //     word: word
-              //   })
-              // });
-              // if (result.json()['valid'] === true) {
-              //   setRow(row + 1);
-              //   setCol(0);
-              //   prevBoard.push([]);
-              //   for (let j = 0; j < 5; j++) {
-              //     prevBoard[row].push(["", ""]);
-              //   }
-              // }
-            }
-            if (col < 5) {
-              prevBoard[row][col][0] = props.letter;
-              setCol(col + 1);
+            } else {
+              if (col < CONSTANTS.MAX_LETTERS_IN_WORD) {
+                prevBoard[row][col][0] = props.letter;
+                if (col < CONSTANTS.MAX_LETTERS_IN_WORD - 1) {
+                  prevBoard[row].push(["", ""])
+                }
+                setCol(col + 1);
+              }
             }
             return prevBoard;
             }
@@ -96,12 +97,14 @@ function Board(props) {
   }, [changed]);
 
   return (
-    <div className="px-10 py-5 grid gap-y-1 items-center w-100 justify-center">
-      {board.map((row, key) => {
+    <div className="px-10 py-5 grid gap-y-1 place-items-center w-full">
+      {board.map((drawing_row, row_number) => {
         return (
-          <div key={key} className="flex gap-1 w-fit">
-            {row.map((value, key) => (
-              <Box key={key} value={value[0]} state={value[1]} pos={key} />
+          <div key={row_number} className="flex gap-1 w-fit">
+            {drawing_row.map((drawing_col, col_number) => (
+                (row_number === row && col_number === col) ?
+                    <Box key={col_number} value={drawing_col[0]} state={"ACTIVE"} pos={col_number} /> :
+                    <Box key={col_number} value={drawing_col[0]} state={"REGULAR"} pos={col_number} className="" />
             ))}
           </div>
         );
