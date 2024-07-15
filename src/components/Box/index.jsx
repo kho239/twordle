@@ -9,18 +9,16 @@ function Box(props) {
   const [state, setState] = useState(regularInputBoxStyle);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (props.state === "C")
-        setState("bg-correct text-white");
-      if (props.state === "E")
-        setState("bg-exist text-white");
-      if (props.state === "N")
-        setState("bg-gray-500 text-white dark:bg-gray-600");
-      if (props.state === "REGULAR")
-        setState(regularInputBoxStyle);
-      if (props.state === "ACTIVE")
-        setState(activeInputBoxStyle);
-    }, 125 * props.pos);
+    if (props.state === "C")
+      setState("bg-correct text-white");
+    if (props.state === "E")
+      setState("bg-exist text-white");
+    if (props.state === "N")
+      setState("bg-gray-500 text-white dark:bg-gray-600");
+    if (props.state === "REGULAR")
+      setState(regularInputBoxStyle);
+    if (props.state === "ACTIVE")
+      setState(activeInputBoxStyle);
   }, [props.state]);
 
   return (
