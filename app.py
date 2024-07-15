@@ -11,9 +11,7 @@ def game_page():
 @app.route("/check_word", methods=['POST'])
 def check_word():
     data = request.get_json()
-    word = data['word']
-    print(word)
-    return {'valid': True}
+    return {'valid': data['word'] in ["ХУЙ", "ПИЗДА", "СЕВЦО"]}
 
 
 if __name__ == '__main__':
