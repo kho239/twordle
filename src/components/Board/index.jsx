@@ -68,6 +68,9 @@ function Board(props) {
                     if (col < CONSTANTS.MAX_LETTERS_IN_WORD) {
                       prevBoard[row].pop();
                     }
+                    if (row === prevBoard.length - 1) {
+                      prevBoard.push([])
+                    }
                     prevBoard[row + 1] = [["", ""]]
                     setRow(row + 1);
                     setCol(0);
@@ -110,7 +113,7 @@ function Board(props) {
             {drawing_row.map((drawing_col, col_number) => (
                 (row_number === row && col_number === col) ?
                     <Box key={col_number} value={drawing_col[0]} state={"ACTIVE"} pos={col_number} /> :
-                    <Box key={col_number} value={drawing_col[0]} state={"REGULAR"} pos={col_number} className="" />
+                    <Box key={col_number} value={drawing_col[0]} state={"REGULAR"} pos={col_number} />
             ))}
           </div>
         );

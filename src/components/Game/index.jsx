@@ -44,7 +44,6 @@ function Game(props) {
     <>
       {/*<div className={styles.game}>*/}
       <div>
-        <hr />
         <Board
           letter={letter}
           clicks={clicked}
