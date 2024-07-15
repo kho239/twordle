@@ -15,7 +15,7 @@ function Box(props) {
       if (props.state === "E")
         setState("bg-exist text-white");
       if (props.state === "N")
-        setState("bg-wrong text-white dark:bg-gray-600");
+        setState("bg-gray-500 text-white dark:bg-gray-600");
       if (props.state === "REGULAR")
         setState(regularInputBoxStyle);
       if (props.state === "ACTIVE")

@@ -26,7 +26,7 @@ function Key(props) {
     setTimeout(() => {
       if (props.state === "C") setState("bg-correct text-white");
       if (props.state === "E") setState("bg-exist text-white");
-      if (props.state === "N") setState("bg-wrong text-white dark:bg-gray-600");
+      if (props.state === "N") setState("bg-gray-500 text-white dark:bg-gray-600");
     }, 350);
   }, [props.state]);
 
@@ -37,7 +37,7 @@ function Key(props) {
         state +
         " h-14 300 grid items-center rounded font-semibold cursor-pointer"
       }
-      onClick={returnKey}
+      onClick={props.state !== "N" ? returnKey: null}
     >
       {props.value === "DEL" ? <BackspaceIcon /> : props.value}
     </button>
@@ -61,7 +61,7 @@ function KeyBoard(props) {
             getKey={keyHandler}
             value={value}
             key={key}
-            state={letters[value]}
+            state={letters[value.toLowerCase()]}
           />
         ))}
       </div>
@@ -71,7 +71,7 @@ function KeyBoard(props) {
             getKey={keyHandler}
             value={value}
             key={key}
-            state={letters[value]}
+            state={letters[value.toLowerCase()]}
           />
         ))}
       </div>
@@ -82,7 +82,7 @@ function KeyBoard(props) {
             getKey={keyHandler}
             value={value}
             key={key}
-            state={letters[value]}
+            state={letters[value.toLowerCase()]}
           />
         ))}
         <Key value="DEL" getKey={keyHandler} />

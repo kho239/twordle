@@ -18,8 +18,10 @@ function Game(props) {
       setLetter("DEL");
       setClicked(clicked + 1);
     } else if ("абвгдежзийклмнопрстуфхцчшщыьъэюя".includes(event.key.toLowerCase())) {
-      setLetter(event.key.toUpperCase());
-      setClicked(clicked + 1);
+      if (letters[event.key.toLowerCase()] !== "N") {
+        setLetter(event.key.toUpperCase());
+        setClicked(clicked + 1);
+      }
     }
   };
 

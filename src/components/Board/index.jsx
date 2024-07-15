@@ -11,7 +11,6 @@ let defaultLetters = [];
   defaultLetters[i] = "";
 });
 
-console.log(CONSTANTS.MAX_LETTERS_IN_WORD)
 for (let i = 1; i < 6; i++) {
   defaultBoard.push([]);
   for (let j = 0; j < CONSTANTS.MAX_LETTERS_IN_WORD; j++) {
@@ -72,7 +71,14 @@ function Board(props) {
                     prevBoard[row + 1] = [["", ""]]
                     setRow(row + 1);
                     setCol(0);
-                    setBoard(prevBoard)
+                    setBoard(prevBoard);
+                    setLetters((prev) => {
+                      for (const letter of word) {
+                        prev[letter.toLowerCase()] = "N";
+                      }
+                      return prev;
+                    });
+                    setChanged(!changed)
                   }
                 })
             } else {
