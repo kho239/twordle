@@ -22,7 +22,6 @@ def game_page():
 
 def check_word_tree(word):
     node = root
-    print(node.children)
     for letter in word.lower():
         if letter not in node.children.keys():
             return False
