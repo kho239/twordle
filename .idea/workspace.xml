@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54a14b36-abe5-40c7-9b74-e9db876c31e5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/additional/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/additional/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Board/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Board/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Box/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Box/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Game/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/static/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720907984434</updated>
-      <workItem from="1720907989137" duration="21846000" />
+      <workItem from="1720907989137" duration="22032000" />
     </task>
     <servers />
   </component>
