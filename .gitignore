@@ -1,3 +1,7 @@
+# Technical
+**/.DS_Store
+.idea
+
 # JavaScript
 node_modules/
 
