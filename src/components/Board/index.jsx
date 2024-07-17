@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from "react";
+import classNames from 'classnames';
 import Box from "../Box/index.jsx";
 import { CONSTANTS } from "../../additional/constants.js"
 
@@ -24,6 +25,7 @@ function Board(props) {
   const [changed, setChanged] = useState(false);
   const [row, setRow] = useState(0);
   const [col, setCol] = useState(0);
+  const [wiggle, setWiggle] = useState(false);
 
   useEffect(() => {
     {
@@ -81,7 +83,10 @@ function Board(props) {
                       }
                       return prev;
                     });
-                    setChanged(!changed)
+                    setChanged(!changed);
+                  } else {
+                    setWiggle(true);
+                    setTimeout(() => {setWiggle(false)}, 200);
                   }
                 })
             } else {
@@ -109,7 +114,8 @@ function Board(props) {
     <div className="px-10 py-5 grid gap-y-1 place-items-center w-full">
       {board.map((drawing_row, row_number) => {
         return (
-          <div key={row_number} className="flex gap-1 w-fit">
+          <div key={row_number} className={classNames("flex gap-1 w-fit",
+                                                      wiggle && row_number === row && "animate-wiggle")}>
             {drawing_row.map((drawing_col, col_number) => (
                 (row_number === row && col_number === col) ?
                     <Box key={col_number} value={drawing_col[0]} state={"ACTIVE"} pos={col_number} /> :
