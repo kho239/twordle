@@ -30,14 +30,14 @@ alphabet = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
 for k in range(2, len(alphabet) + 1):
     numbers = []
     for letters in combinations(alphabet, k):
-        respond = find_word(letters)
-        if respond[0]:
+        word_exists, node_count = find_word(letters)
+        if word_exists:
             success[k] += 1
         else:
             failure[k] += 1
-        if respond[1] > max_count[k]:
-            max_count[k] = respond[1]
-        numbers.append(respond[1])
+        if node_count > max_count[k]:
+            max_count[k] = node_count
+        numbers.append(node_count)
     average[k] = sum(numbers) / len(numbers)
     print(k, max_count[k], average[k], success[k], failure[k], datetime.now())
 max_total = max(max_count)
