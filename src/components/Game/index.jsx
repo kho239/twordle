@@ -2,13 +2,15 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import Board from "../Board/index.jsx";
 import KeyBoard from "../KeyBoard/index.jsx";
-import styles from "../../styles/game.css";
+import ModalFindWord from "../Modal/find_word.jsx";
+import {CONSTANTS} from "../../additional/constants";
 
 function Game(props) {
   const [letter, setLetter] = useState();
   const [changed, setChanged] = useState(false);
   const [letters, setLetters] = useState({});
   const [clicked, setClicked] = useState(0);
+  const [modalOpened, setModalOpened] = useState(false);
 
   const onClickDown = (event) => {
     if (event.key === "Enter") {
@@ -33,8 +35,12 @@ function Game(props) {
 
 
   const keyHandler = (letterValue) => {
-    setLetter(letterValue);
-    setClicked(clicked + 1);
+    if (letterValue === "?") {
+      setModalOpened(true);
+    } else {
+      setLetter(letterValue);
+      setClicked(clicked + 1);
+    }
   };
   const LettersHandler = (lettersValue) => {
     setLetters(lettersValue);
@@ -42,7 +48,9 @@ function Game(props) {
   };
   return (
     <>
-      {/*<div className={styles.game}>*/}
+      {modalOpened && <ModalFindWord
+          letters={Object.keys(letters).filter(key => letters[key] !== "N")}
+          close={() => setModalOpened(false)}/>}
       <div>
         <Board
           letter={letter}

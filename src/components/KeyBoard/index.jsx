@@ -74,6 +74,7 @@ function KeyBoard(props) {
             state={letters[value.toLowerCase()]}
           />
         ))}
+        <Key value="?" getKey={keyHandler} />
       </div>
       <div className="flex gap-1 my-0.5 w-fit">
         <Key value="ENTER" getKey={keyHandler} />
