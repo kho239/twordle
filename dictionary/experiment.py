@@ -27,8 +27,8 @@ def find_word(letters_check):
 
 success, failure, max_count, average = [0] * 33, [0] * 33, [0] * 33, [0] * 33
 alphabet = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
-for k in range(2, len(alphabet) + 1):
-    numbers = []
+for k in range(len(alphabet), 15, -1):
+    summ, count = 0, 0
     for letters in combinations(alphabet, k):
         word_exists, node_count = find_word(letters)
         if word_exists:
@@ -37,8 +37,9 @@ for k in range(2, len(alphabet) + 1):
             failure[k] += 1
         if node_count > max_count[k]:
             max_count[k] = node_count
-        numbers.append(node_count)
-    average[k] = sum(numbers) / len(numbers)
+        summ += node_count
+        count += 1
+    average[k] = summ / count
     print(k, max_count[k], average[k], success[k], failure[k], datetime.now())
 max_total = max(max_count)
 print(max_count, max_total, average, success, failure, sep='\n')
